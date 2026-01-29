@@ -69,7 +69,14 @@ function App() {
     if (cell.state !== 'hidden') return
 
     if (cell.isMine) {
-      cell.state = 'revealed'
+      // 全地雷を表示
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          if (newBoard[r][c].isMine) {
+            newBoard[r][c].state = 'revealed'
+          }
+        }
+      }
       setGameOver(true)
       setBoard(newBoard)
       return
@@ -139,3 +146,4 @@ function App() {
 }
 
 export default App
+
